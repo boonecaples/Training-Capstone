@@ -1,0 +1,285 @@
+@font-face {
+    font-family: Arcade;
+    src: url("../styles/dpcomic.ttf")
+}
+
+@font-face {
+    font-family: Arcade2;
+    src: url("../styles/zig.regular.ttf")
+}
+
+.blurred {
+    backdrop-filter: blur(14px);
+}
+
+.wrapper {
+    /* width: 400px;
+    height: 420px; */
+    width: 25vw;
+    height: 65vh;
+    border-radius: 10px;
+    text-align: center;
+    border: solid rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+}
+
+form {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+    font-family: Arcade;
+}
+
+.input-field {
+    position: relative;
+    border-bottom: 2px solid #ccc;
+    margin: 15px 0;
+}
+
+.input-field label {
+    font-family: Arcade2;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: .8rem;
+    pointer-events: none;
+    transition: 0.15s ease;
+}
+
+.input-field input {
+    font-family: Arcade2;
+    font-size: .8rem;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.input-field input:focus~label,
+.input-field input:valid~label {
+
+    font-size: 0.8rem;
+    top: 10px;
+    transform: translateY(-120%);
+}
+
+.forget {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0 35px 0;
+    color: #fff;
+}
+
+#remember {
+    color: #fff;
+}
+
+.forget label {
+    display: flex;
+    align-items: center;
+}
+
+.forget label p {
+    font-family: Arcade2;
+    font-size: 0.7rem;
+    margin-left: 8px;
+}
+
+.wrapper a {
+    font-family: Arcade2;
+    font-size: 0.7rem;
+    color: #efefef;
+    text-decoration: none;
+}
+
+.start {
+    background: #fff;
+    color: #000;
+    font-weight: 00;
+    font-family: Arcade;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 26px;
+    border: 2px solid transparent;
+    transition: 0.3s ease;
+    text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.start:hover {
+    color: #ffffff;
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 6px 14px;
+    font-size: 37px;
+}
+
+.reg-butt {
+    font-family: Arcade2;
+    font-size: .7rem;
+    text-align: center;
+    margin-top: 25px;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+}
+
+.reg-butt:hover {
+    text-decoration: underline;
+    color: yellow;
+}
+
+.forgot_pass:hover {
+    text-decoration: underline;
+    color: yellow;
+}
+
+.dont {
+    font-family: Arcade2;
+    font-size: .7rem;
+    color: white;
+}
+
+.back {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    height: 3rem;
+    width: 3rem;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .7);
+}
+
+.back img:last-child {
+    display: none;
+}
+
+.back:hover img:last-child {
+    height: 2.5rem;
+    width: 2.5rem;
+    display: block;
+}
+
+.back:hover img:first-child {
+    display: none;
+}
+
+.back:hover {
+    border-color: yellow;
+}
+
+.arrow-img,
+.arrow2-img {
+    height: 2rem;
+    width: 2rem;
+}
+
+.account-img {
+    height: 2.5rem;
+    width: 2.5rem;
+    filter: invert(1);
+}
+
+.account-img:hover {
+    transition: 0.3s ease;
+    height: 3rem;
+    width: 3rem;
+}
+
+.dropdown {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    height: 3rem;
+    width: 3rem;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .7);
+    color: #fff;
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    z-index: 1;
+    transform: perspective(1000px);
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu {
+    list-style-type: none;
+    margin: -32px;
+    margin-top: 6px;
+    padding: 0;
+    left: 0;
+    opacity: 0;
+    text-align: center;
+    top: 0;
+    visibility: hidden;
+    z-index: -99999;
+
+    width: 13rem;
+    height: 3rem;
+    outline: none;
+    color: #fff;
+    font-size: 1rem;
+    font-family: Arcade2;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
+    transition-delay: 1s;
+}
+
+.dropdown-menu li {
+    cursor: default;
+}
+
+.dropdown:hover .dropdown-menu {
+    background: transparent;
+    margin-right: 10px;
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    width: 100%;
+    -webkit-transition: all .5s, background, 2s .5s linear;
+    transition: all .5s, background 2s .5s linear;
+}
+
+.logout,
+.delete-account {
+    height: 3rem;
+    width: 5rem;
+    background: transparent;
+    color: #fff;
+    font-family: Arcade2;
+    font-size: .8rem;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .7);
+}
+
+.logout:hover,
+.delete-account:hover {
+    color: yellow;
+    text-decoration: underline;
+    border-color: yellow;
+}
