@@ -4,19 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/template.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/rainbow.css') }}" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login_page.css') }}" />
     <link rel="stylesheet" href="template.css">
-    <script src="../static/styles/konami.js"></script>
-    <script src="../static/styles/hacker.js"></script>
-
     <style>
         .hidden {
             display: none;
         }
     </style>
-    <title>GolF CluB Arcade</title>
+    <title>BIStonks</title>
 </head>
 
 <body>
@@ -53,17 +47,14 @@
     <div class="register-page hidden">
         <div class="login-page">
             <div class="wrapper">
-                <button class="back" onclick="home()">
-                    <img class="arrow-img" alt="" src="../static/styles/arrow.png">
-                    <img class="arrow2-img" alt="" src="../static/styles/arrow2.png">
+                <button class="back" onclick="home()">back
                 </button>
-                <form id="regForm" action="" name="RegPassword">
+                <form id="loginForm">
                     <h2>Register</h2>
-                    <div class="input-field" type="text" id="usrname" name="usrname">
-                        <input id="regUsername" type="text" required></input>
+                    <div class="input-field">
+                        <input id="inputUsername" type="text" required></input>
                         <label>username</label>
                     </div>
-
                     <div class="input-field">
                         <input type="password" id="regPassword1" name="password" onChange="onChange()"
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -78,208 +69,27 @@
                     </div>
                     <input class="start" type="submit" value="Submit">
                 </form>
+                <p class="dont">Don't have an account?
+                    <button class="reg-butt" onclick="register()"> Register </button>
+                </p>
             </div>
         </div>
-    </div>
 
-    <!-- MAIN PAGE -->
-    <div class="main-page hidden">
-        <div class="dropdown"><img class="account-img" src="../static/styles/account.png" alt="Uploaded Image">
-            <ul class="dropdown-menu">
-                <li><button class="logout" onclick="home()">Logout</li>
-                <li><button class="delete-account" id='deleteForm'>Delete Account</li>
-            </ul>
-        </div>
-        <div class="glitch-wrapper">
-            <div class="glitch" data-text="GolF CluB Arcade">GolF CluB Arcade</div>
-            <div class="glitch2" data-text="GolF CluB Arcade">GolF CluB Arcade</div>
-        </div>
-        <div class="image-container" id="imageContainer">
-            <img src="../static/styles/Picture4.png" alt="Uploaded Image" id="rotateImage">
-            <script src="../static/styles/main.js"></script>
-        </div>
-        <a id="duck" href="http://127.0.0.1:5000/duckhunt"><button class="game1" type="button">Duck Hunt</button></a>
-        <a id="mortal" href="http://127.0.0.1:5000/mortalk"><button class="game2" type="button">Mortal
-                Combat</button></a>
-        <a id="tetris" href="http://127.0.0.1:5000/tetris"><button class="game3" type="button">Tetris</button></a>
-        <a id="pacman" href="http://127.0.0.1:5000/pacman"><button class="game4" type="button">Pacman</button></a>
-        <a id="mario" href="http://127.0.0.1:5000/mario"><button class="game5" type="button">Mario & Luigi</button></a>
-        <a id="doom" href="http://127.0.0.1:5000/doom"><button class="game6" type="button">Doom</button></a>
-        <a id="galaga" href="http://127.0.0.1:5000/galaga"><button class="game7" type="button">Galaga</button></a>
-        <a id="hedgehog" href="http://127.0.0.1:5000/sonic"><button class="game8" type="button">Sonic The
-                Hedgehog</button></a>
-        <button id="mostPopular" class="mostPopular" type="button" onmouseover="mostPopular()"
-            onmouseout="mostPopular2()">Most Popular</button>
-        <div hidden id="mostPopDiv" class="mostPopDiv">
-            #1 Sonic <br>
-            #2 Mario&Luigi <br>
-            #3 Duck Hunt <br>
-        </div>
-        <button id="myMostPlayed" class="myMostPlayed" type="button" onmouseover="myMostPlayed()"
-            onmouseout="myMostPlayed2()">My Most Played</button>
-        <div hidden id="myMostPlayedDiv" class="myMostPlayedDiv">
-            #1 Duck Hunt <br>
-            #2 Sonic <br>
-            #3 Tetris <br>
-        </div>
-    </div>
+        <script>
+            function login() {
+                document.querySelector('.login-page').classList.add('hidden');
+                document.querySelector('.register-page').classList.add('hidden');
+            }
 
-    <script>
-        function login() {
-            document.body.classList.add('blurred');
-            document.querySelector('.login-page').classList.add('hidden');
-            document.querySelector('.main-page').classList.remove('hidden');
-            document.querySelector('.register-page').classList.add('hidden');
-        }
+            function register() {
+                document.querySelector('.register-page').classList.remove('hidden');
+                document.querySelector('.login-page').classList.add('hidden');
+            }
 
-        function register() {
-            document.querySelector('.register-page').classList.remove('hidden');
-            document.querySelector('.login-page').classList.add('hidden');
-            document.querySelector('.main-page').classList.add('hidden');
-        }
-
-        function home() {
-            document.body.classList.remove('blurred');
-            document.querySelector('.login-page').classList.remove('hidden');
-            document.querySelector('.main-page').classList.add('hidden');
-            document.querySelector('.register-page').classList.add('hidden');
-        }
-        // This function is used to grab data from the log in field and run it through flask with ajax. this provides
-        // A return of true or false in the form of JSON data. 
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent page refresh
-
-            const username = document.getElementById('inputUsername').value;
-            const password = document.getElementById('inputPassword').value;
-            const path = "login"
-
-            fetch('/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username: username, password: password, path: path })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.result === true) {
-                        login();
-                    } else {
-                        alert('Login Failed!');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred');
-                });
-        });
-
-        // This function is used to grab data from the register field and run it through flask with ajax. this provides
-        // A return of true or false in the form of JSON data. 
-        document.getElementById('regForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent page refresh
-
-            const username = document.getElementById('regUsername').value;
-            const password = document.getElementById('regPassword1').value;
-            const password2 = document.getElementById('regPassword2').value;
-            const path = "register"
-
-            if (password == password2) {
-                fetch('/', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ username: username, password: password, path: path })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        console.log(data);
-                        if (data.result === true) {
-                            alert('Successful Creation!');
-                            home();
-                        } else {
-                            alert('Creation Failed!');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred');
-                    });
-            }else{
-                alert('Password doesnt match');
-                }
-            });
-        
-        //TODO Does elete have a submit? Does it need it?
-        document.getElementById('deleteForm').addEventListener('click', function (event) {
-
-            //Need to find only UN?
-            const username = document.getElementById('inputUsername').value;
-            const password = document.getElementById('inputPassword').value;
-
-            const path = "delete"
-            fetch('/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username: username, password: password, path: path })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.result === true) {
-                        alert('Successful Deletion!');
-                        home();
-                    } else {
-                        alert('Deletion Failed');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred');
-                });
-        });
-        //called on to update url
-        // function goToURL(newURL) {
-        //     window.location.href = newURL;
-        // }
-
-
-        //below are all the functions to update DB based on clicks
-        document.getElementById('duck').addEventListener('click', function (event) {
-            // event.preventDefault(); // Prevent page refresh
-
-            const username = document.getElementById('inputUsername').value;
-
-            fetch('/duckhunt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ username: username })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.result === true) {
-                        // goToURL('http://127.0.0.1:5000/duckhunt');
-
-                    } else {
-                        alert('Failed!');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred');
-                });
-        });
-
-        
-    </script>
-
+            function home() {
+                document.querySelector('.login-page').classList.remove('hidden');
+                document.querySelector('.register-page').classList.add('hidden');
+            }
+        </script>
 </body>
-
 </html>
